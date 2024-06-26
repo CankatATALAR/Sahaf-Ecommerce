@@ -1,0 +1,145 @@
+﻿/*.total-content{
+    margin: 20px;  
+}
+
+.list_of_members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sales {
+    background-color: #1abc9c;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.icon-text {
+    text-align: center;
+}
+
+.chart-container {
+    width: 300px;
+    height: 300px;
+}
+
+.chart-container {
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+}*/
+
+
+
+
+
+/*.total-content {
+    margin: 20px;
+    margin-bottom: 30px;
+}
+
+.list_of_members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container {
+    width: 500px;
+    height: 500px;
+    margin-bottom: 20px;
+}
+
+.icon-text {
+    text-align: center;
+}
+
+.orders, .visitors {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 50%;
+    right: 300px; 
+    transform: translateY(-50%);
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.chart-legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+}*/
+
+.total-content {
+    margin: 20px;
+    margin-bottom: 30px;
+}
+
+.list_of_members {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chart-container {
+    position: relative; /* Mutlaka ekleyin, içerisindeki absolutely positionlu legend için */
+    width: 500px;
+    height: 500px;
+    margin-bottom: 150px;
+    text-align: center;
+}
+
+.icon-text {
+    text-align: center;
+}
+
+.orders, .visitors {
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+
+.chart-legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    top: 50%; 
+    right: -100px; 
+    transform: translateY(-50%);
+}
+
+.chart-legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 4px; /* İstediğiniz boşluk miktarına göre ayarlayabilirsiniz */
+}
+
+.chart-legend-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+}

@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/web/css/bootstrap.css" rel="stylesheet" type='text/css' />
+    @*Custom Theme files*@
+    <script src="~/web/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/web/css/font-awesome.css">
+    @*Custom Theme files*@
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Metro Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="~/web/css/statistic.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div class="total-content">
+        <div class="list_of_members">
+
+            <div class="chart-container">
+                <h1 style="color:indigo"><strong>Daire Grafiği</strong></h1>
+                <div class="clearfix"></div>
+                <canvas id="pieChart"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <h1 style="color:indigo"><strong>Sütun Grafiği</strong></h1>
+                <div class="clearfix"></div>
+                <canvas id="barChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    
+
+    <script>
+        
+        var labels = ['Satışlar', 'Ürünler', 'Kategoriler', 'Sepetler', 'Kullanıcılar'];       
+        var data = [
+            @ViewBag.satis,
+            @ViewBag.urun,
+            @ViewBag.kategori,
+            @ViewBag.sepet,
+            @ViewBag.kullanici
+        ];
+        var backgroundColors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#ff6a00'];
+
+        //console.log('Data:', data);
+
+        var ctx = document.getElementById('pieChart').getContext('2d');
+        var pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Daire Grafiği',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        var ctxBar = document.getElementById('barChart').getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Veri Seti',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: backgroundColors.map(color => {
+                        return color.replace('1', '0.2');
+                    }),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return tooltipItem.label + ': ' + tooltipItem.raw.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        var legendContainer = document.createElement('div');
+        legendContainer.className = 'chart-legend';
+
+        labels.forEach(function (label, index) {
+            var legendItem = document.createElement('div');
+            legendItem.className = 'chart-legend-item';
+
+            var legendColor = document.createElement('span');
+            legendColor.className = 'chart-legend-color';
+            legendColor.style.backgroundColor = backgroundColors[index];
+
+            var legendText = document.createElement('span');
+            legendText.innerText = label;
+
+            legendItem.appendChild(legendColor);
+            legendItem.appendChild(legendText);
+            legendContainer.appendChild(legendItem);
+        });
+
+        document.querySelector('.chart-container').appendChild(legendContainer);
+
+    </script>
+
+</body>
+</html>
+
+

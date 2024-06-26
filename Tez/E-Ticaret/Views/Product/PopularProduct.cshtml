@@ -1,0 +1,56 @@
+﻿<div class="recommended_items">
+    <!--recommended_items-->
+    <h2 class="title text-center" style="color:darkred; border-color:darkred"><strong>POPÜLER ÜRÜNLERİMİZ</strong></h2>
+
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="item active">
+                @foreach (var item in ViewBag.popular)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="@Url.Action("ProductDetails", "Product", new { id = item.Id })"><img src="~/Content/Image/@item.Image" style="width:150px; height:150px;" alt="" /></a>
+                                    <h2 style="color:darkred; border-color:darkred">@item.Price</h2>
+                                    <p style="color:darkred; border-color:darkred">@item.Name</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>}
+
+
+            </div>
+            <div class="item">
+                @foreach (var item in ViewBag.popular)
+                {
+                    <div class="col-sm-4">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-center">
+                                    <a href="@Url.Action("ProductDetails", "Product", new { id = item.Id })"><img src="~/Content/Image/@item.Image" style="width:150px; height:150px;" alt="" /></a>
+                                    <h2 style="color:darkred; border-color:darkred">@item.Price</h2>
+                                    <p style="color:darkred; border-color:darkred">@item.Name</p>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>}
+
+            </div>
+        </div>
+        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left" style="background-color:darkred"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right" style="background-color:darkred"></i>
+        </a>
+    </div>
+
+
+
+    
+</div><!--/recommended_items-->

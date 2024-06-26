@@ -1,0 +1,26 @@
+﻿@model List<EntityLayer.Entities.Category>
+
+<div class="col-sm-3" style="margin-top:30px">
+    <div class="left-sidebar">
+        <div class="brands_products">
+            <h2 style="color:darkred; border-color:darkred"><strong>KATEGORİLER</strong></h2>
+            <div class="brands-name">
+                <ul class="nav nav-pills nav-stacked">
+                    <li>
+                        <a href="/Home/Index" style="color:snow; background-color:darkred">
+                            <span class="pull-right"></span><strong>Tüm Ürünler</strong>
+                        </a>
+                    </li>
+                    @foreach (var item in Model)
+                    {
+                        <li>
+                            <a href="/Category/Details/@item.Id" style="color:snow; background-color:darkred">
+                                <span class="pull-right"><strong>(@item.Products.Count)</strong></span><strong>@item.Name</strong>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

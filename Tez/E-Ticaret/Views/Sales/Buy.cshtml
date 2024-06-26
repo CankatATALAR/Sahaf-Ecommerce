@@ -1,0 +1,96 @@
+﻿@model EntityLayer.Entities.Cart
+@{
+    ViewBag.Title = "Satın Al";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<style>
+    .product-container {
+        display: flex;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+
+    .product-image {
+        flex: 1;
+        margin-right: 20px;
+    }
+
+        .product-image img {
+            width: 150px;
+            height: 150px;
+        }
+
+    .product-details {
+        flex: 3;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+        .product-details p {
+            margin: 5px 0;
+        }
+
+    .form-group {
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="modal-header">
+    <h2>Satın Al</h2>
+</div>
+
+<div class="container">
+    @using (Html.BeginForm("Buy2", "Sales", FormMethod.Post))
+    {
+        <div class="modal-body">
+            @Html.HiddenFor(x => x.Id)
+
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="~/Content/Image/@Model.Product.Image" style="width: 140px; height: 140px;" />
+                </div>
+                <div class="product-details">
+                    <p><strong>Ürün Bilgisi:</strong> @Model.Product.Name</p>
+                    <p><strong>Ürün Adeti:</strong> @Html.DisplayFor(x => x.Quantity)</p>
+                    <p><strong>Toplam Fiyat:</strong> @Html.DisplayFor(x => x.Price, new { @class = "form-control" })</p>
+                    <p><strong>Tarih:</strong> @DateTime.Now.ToString("dd/MM/yyyy")</p>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="modal-footer">
+            <button type="submit" class="btn btn-success">Satın Al</button>
+            <a href="/Cart/Index" class="btn btn-dark">İptal</a>
+        </div>*@
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success" style="background-color: darkgreen; border-color:darkgreen">Satın Al</button>
+            <button type="button" class="btn btn-dark" onclick="window.location.href='/Cart/Index';" style="color:white; background-color:darkred; border-color:darkred">İptal</button>
+        </div>
+    }
+</div>
+
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+
+<script>
+    $(function () {
+        $('.txt').on('change', function () {
+            var miktar = $(this).val();
+            var sepetid = $(this).attr('data-id');
+            $.ajax({
+                url: '/Cart/DinamikMiktar',
+                data: { id: sepetid, miktari: miktar },
+                success: function (res) {
+                    document.location.reload();
+                }
+            });
+        });
+    });
+</script>
+
+
+
+

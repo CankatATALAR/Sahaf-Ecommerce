@@ -1,0 +1,96 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<EntityLayer.Entities.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section id="slider">
+    <!--slider-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#slider-carousel" data-slide-to="1"></li>                        
+                    </ol>
+
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-6">
+                                <h1 style="color:darkred; border-color:darkred"><span style="color:darkred; border-color:darkred">O</span>-DEPOM</h1>
+                                <h2>Osmanlıca Eserler</h2>
+                                <p><strong>Osmanlıca Süreli Yayınlar, Kitaplar, El Yazmaları, Lügatlar ve Başvuru Kaynakları...</strong></p>                               
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/eshop/images/home/bigfont1.png" class="girl img-responsive" alt="" />                                
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="col-sm-6">
+                                <h1 style="color:darkred; border-color:darkred"><span style="color:darkred; border-color:darkred">O</span>-DEPOM</h1>
+                                <h2>Çocuk Kitapları</h2>
+                                <p><strong>Çocuklar İçin Birbirinden Eğlenceli ve Eğitici Romanlar, Hikayeler, Öyküler ve Boyama Kitapları</strong></p>                                
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="~/eshop/images/home/bigfont2.png" class="girl img-responsive" alt="" />                  
+                            </div>
+                        </div>                       
+                    </div>
+
+                    <a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+                        <i class="fa fa-angle-left" style="color:darkred"></i>
+                    </a>
+                    <a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+                        <i class="fa fa-angle-right" style="color:darkred"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!--/slider-->
+
+<section>
+    <div class="container">
+        <div class="row">
+            @Html.Action("CategoryList", "Category")
+            <br />
+            <div class="col-sm-9 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center" style="color:darkred; border-color:darkred"><strong>ÜRÜNLERİMİZ</strong></h2>
+                    <br />
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-4">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+
+                                        <a href="/Product/ProductDetails/@item.Id"><img src="~/Content/Image/@item.Image" style="width:220px; height:269px;" alt="" /></a>
+                                        <h2 style="color:darkred">@item.Price</h2>
+                                        <p>@item.Name</p>
+                                        <a href="/Product/ProductDetails/@item.Id" class="btn btn-default add-to-cart" style="color:snow; background-color:darkred; border-color:snow">Ürün Detay</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div><!--features_items-->
+                <div class="text-center">
+                    @Html.PagedListPager(Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)
+                </div>                
+
+                @Html.Action("PopularProduct", "Product")
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -1,0 +1,37 @@
+﻿@model List<EntityLayer.Entities.Product>
+@{
+    Layout = null;
+}
+
+<div>
+    @using (Html.BeginForm("ProductSearch", "Products", FormMethod.Get))
+    {
+        <p>
+            Search: @Html.TextBox("searchString")
+            <input type="submit" value="Search" />
+        </p>
+    }
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No products found.</p>
+    }
+</div>
